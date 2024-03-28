@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# The Graph Query Examples | ReactJS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Demos how to query the [Graph Network Arbitrum Subgraph](https://thegraph.com/explorer/subgraphs/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp?view=Playground&chain=arbitrum-one) published to The Graph Network using an API Key obtained on [The Graph Studio](https://thegraph.com/studio).
 
-Currently, two official plugins are available:
+## Running
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Clone Repo
+git clone git@github.com:graphprotocol/query-examples.git
 
-## Expanding the ESLint configuration
+# CD into reactjs example
+cd ./examples/reactjs
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Install bun package manager, if needed
+curl -fsSL https://bun.sh/install | bash
 
-- Configure the top-level `parserOptions` property like this:
+# Install deps
+bun install
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# Run
+bun run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Environment Variables
+
+```bash
+# Copy the example env file into a .env.local.
+cp ./.env.example ./.env.local
+# replace the `{your api key here}` with your API Key
+```
+
+- `VITE_API_KEY` - the 32-digit API Key created in [The Graph Studio](https://thegraph.com/studio).
+  - **Note** in this example, the env var is _exposed to the client_.
+
+## GraphQL Codegen
+
+This repo utilizes [graphql codegen](https://the-guild.dev/graphql/codegen). This validates our graphql and generates types to match the queries written for the app. These types can then be used to make our components type-safe to the graphql queries that will hydrate them.
+
+```bash
+# run graphql codegen to regen types from updated queries
+bun run codegen.gql
+```
