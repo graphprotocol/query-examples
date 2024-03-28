@@ -14,9 +14,9 @@ export default {
         arrayInputCoercion: false,
         enumsAsTypes: true,
         dedupeFragments: true,
-        presetConfig: {
-          fragmentMasking: false,
-        },
+      },
+      presetConfig: {
+        fragmentMasking: false,
       },
     },
   },

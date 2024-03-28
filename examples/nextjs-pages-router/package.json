@@ -1,5 +1,5 @@
 {
-  "name": "@graphprotocol/nextjs-pages-router",
+  "name": "@graphprotocol/query-examples-nextjs-pages-router",
   "description": "Demos how to query the Graph Network Arbitrum Subgraph published to The Graph Network using an API Key obtained on The Graph Studio in a NextJS application using the nextjs pages router",
   "version": "0.1.0",
   "private": true,
