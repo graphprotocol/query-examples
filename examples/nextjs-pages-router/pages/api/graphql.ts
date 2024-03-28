@@ -10,8 +10,13 @@ import { z } from 'zod';
 
 import { env } from '@/env/server';
 
-const subgraphQueryUrl = `https://gateway-arbitrum.network.thegraph.com/api/${env.API_KEY}/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp`;
-const client = new GraphQLClient(subgraphQueryUrl);
+const subgraphQueryUrl =
+  'https://gateway-arbitrum.network.thegraph.com/api/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp';
+const client = new GraphQLClient(subgraphQueryUrl, {
+  headers: {
+    Authorization: `Bearer ${env.API_KEY}`,
+  },
+});
 
 const GraphqlReqSchema = z.object({
   query: z.string().min(1),
