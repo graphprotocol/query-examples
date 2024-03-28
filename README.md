@@ -20,6 +20,7 @@ An API Key will be needed to query Subgraphs published to The Graph Network. Use
 - [ReactJS](./examples/reactjs/README.md)
 - [NextJS app router](./examples/nextjs-app-router/README.md)
 - [NextJS pages router](./examples/nextjs-pages-router/README.md)
+- [Remix](./examples/remix/README.md)
 
 ## Additional Resources
 
