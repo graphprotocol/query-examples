@@ -28,7 +28,7 @@ export default function HomePage(props: HomePageProps) {
   return (
     <div>
       <Head>
-        <title>The Graph | NextJS Pages Router Example</title>
+        <title>The Graph | NextJS Pages Router Subgraph Querying Example</title>
         <meta
           name="description"
           content="Demos how to query the Graph Network Arbitrum Subgraph published to The Graph Network using an API Key obtained on The Graph Studio in a NextJS application using the nextjs pages router"

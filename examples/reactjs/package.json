@@ -1,6 +1,6 @@
 {
   "name": "@graphprotocol/query-examples-reactjs",
-  "description": "Demos how to query a Subgraph published to The Graph Network using an API Key obtained on https://thegraph.com/studio.",
+  "description": "Demos how to query the Graph Network Arbitrum Subgraph published to The Graph Network using an API Key obtained on The Graph Studio in a ReactJS application",
   "private": true,
   "version": "0.0.0",
   "type": "module",

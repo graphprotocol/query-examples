@@ -13,7 +13,7 @@ const firaMono = Fira_Mono({
 });
 
 export const metadata = {
-  title: 'The Graph | NextJS App Router Example',
+  title: 'The Graph | NextJS App Router Subgraph Querying Example',
   description:
     'Demos how to query the Graph Network Arbitrum Subgraph published to The Graph Network using an API Key obtained on The Graph Studio in a NextJS application using the nextjs app router',
 } satisfies Metadata;
