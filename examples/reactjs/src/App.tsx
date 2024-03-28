@@ -4,6 +4,7 @@ import { GraphQLClient } from 'graphql-request';
 import { graphql } from './generated';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
+// replace this with your Subgrah URL
 const subgraphQueryUrl = `https://gateway-arbitrum.network.thegraph.com/api/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp`;
 const client = new GraphQLClient(subgraphQueryUrl, {
   headers: {

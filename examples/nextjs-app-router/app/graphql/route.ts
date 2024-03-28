@@ -10,6 +10,7 @@ import { z } from 'zod';
 
 import { env } from '@/env/server';
 
+// replace this with your Subgrah URL
 const subgraphQueryUrl =
   'https://gateway-arbitrum.network.thegraph.com/api/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp';
 const client = new GraphQLClient(subgraphQueryUrl, {

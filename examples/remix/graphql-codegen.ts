@@ -13,6 +13,7 @@ export default {
   generates: {
     './app/generated/': {
       schema: [
+        // replace this with your Subgrah URL
         `https://gateway-arbitrum.network.thegraph.com/api/${API_KEY}/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp`,
       ],
       documents: ['./app/**/*.{ts,tsx}'],

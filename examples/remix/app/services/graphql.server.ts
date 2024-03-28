@@ -8,7 +8,9 @@ const API_KEY = process.env.API_KEY;
 if (!API_KEY) {
   throw new Error('Must provide an API_KEY env var');
 }
-const subgraphQueryUrl = `https://gateway-arbitrum.network.thegraph.com/api/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp`;
+// replace this with your Subgrah URL
+const subgraphQueryUrl =
+  'https://gateway-arbitrum.network.thegraph.com/api/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp';
 
 let client: GraphQLClient;
 

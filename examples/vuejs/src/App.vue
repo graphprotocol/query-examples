@@ -8,6 +8,7 @@ import { graphql } from './generated/gql'
 // NOTE: this is available on the client in both the shipped JS and viewable in the network tab.
 // Be careful of API Key leaks
 const API_KEY = import.meta.env.VITE_API_KEY
+// replace this with your Subgrah URL
 const subgraphQueryUrl = `https://gateway-arbitrum.network.thegraph.com/api/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp`
 const client = new GraphQLClient(subgraphQueryUrl, {
   headers: {
