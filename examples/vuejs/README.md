@@ -1,4 +1,4 @@
-# The Graph Query Examples | ReactJS
+# The Graph Query Examples | VueJS
 
 Demos how to query the [Graph Network Arbitrum Subgraph](https://thegraph.com/explorer/subgraphs/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp?view=Playground&chain=arbitrum-one) published to The Graph Network using an API Key obtained on [The Graph Studio](https://thegraph.com/studio) in a `VueJS` application.
 
