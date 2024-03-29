@@ -1,0 +1,33 @@
+{
+  "name": "@graphprotocol/query-examples-nuxt",
+  "description": "Demos how to query the Graph Network Arbitrum Subgraph published to The Graph Network using an API Key obtained on The Graph Studio in a Nuxt application",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "codegen.gql": "graphql-codegen --config ./graphql-codegen.ts && bun prettier --write \"generated/**/*\"",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "@t3-oss/env-nuxt": "^0.9.2",
+    "@tanstack/vue-query": "^5.28.9",
+    "dotenv": "^16.4.5",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
+    "nuxt": "^3.11.1",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.5",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.3"
+  }
+}
