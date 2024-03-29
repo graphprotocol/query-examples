@@ -17,12 +17,13 @@ An API Key will be needed to query Subgraphs published to The Graph Network. Use
 
 ## Examples
 
-- [ReactJS](./examples/reactjs/README.md)
-- [NextJS app router](./examples/nextjs-app-router/README.md)
-- [NextJS pages router](./examples/nextjs-pages-router/README.md)
-- [Remix](./examples/remix/README.md)
-- [VueJS](./examples/vuejs/README.md)
-- [SvelteKit](./examples/sveltejs/README.md)
+- [ReactJS](./examples/reactjs/)
+- [NextJS app router](./examples/nextjs-app-router/)
+- [NextJS pages router](./examples/nextjs-pages-router/)
+- [Remix](./examples/remix/)
+- [VueJS](./examples/vuejs/)
+- [Nuxt (SSR Vue)](./examples/nuxt/)
+- [SvelteKit](./examples/sveltejs/)
 
 ## Additional Resources
 
