@@ -24,6 +24,7 @@ An API Key will be needed to query Subgraphs published to The Graph Network. Use
 - [VueJS](./examples/vuejs/)
 - [Nuxt (SSR Vue)](./examples/nuxt/)
 - [SvelteKit](./examples/sveltejs/)
+- [cURL](./examples/curl/)
 
 ## Additional Resources
 
