@@ -18,6 +18,10 @@ curl -fsSL https://bun.sh/install | bash
 # Install deps
 bun install
 
+# create env
+cp ./.env.example ./.env
+# need to set the API_KEY value using an API Key created in subgraph studio
+
 # Run
 bun run dev
 ```
