@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "noUncheckedIndexedAccess": false,
+    "sourceMap": true
+  },
+  "include": ["src", "**/*.ts"],
+  "exclude": ["node_modules"],
+  "ts-node": { "files": true }
+}

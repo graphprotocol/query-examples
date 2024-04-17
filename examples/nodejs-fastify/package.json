@@ -1,0 +1,39 @@
+{
+  "name": "@graphprotocol/query-examples-nodejs-fastify",
+  "description": "Demos how to query the Graph Network Arbitrum Subgraph published to The Graph Network using an API Key obtained on The Graph Studio in a NodeJS API using the fastify framework",
+  "repository": {
+    "url": "https://github.com/graphprotocol/query-examples",
+    "directory": "/examples/nodejs-fastify"
+  },
+  "module": "./src/server.ts",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.2"
+  },
+  "packageManager": "bun@1.0.33",
+  "scripts": {
+    "codegen.gql": "graphql-codegen --config graphql-codegen.ts && bun prettier --write \"src/generated/subgraph.ts\"",
+    "build": "rm -rf dist && bun tsc -P ./tsconfig.build.json",
+    "dev": "nodemon --watch ../. --ext ts --exec node --no-warnings --loader ts-node/esm --inspect src/server.ts",
+    "start": "node ."
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@t3-oss/env-core": "^0.9.2",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.26.2",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.6",
+    "@graphql-codegen/typescript-resolvers": "^4.0.6",
+    "@types/bun": "latest",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  }
+}
