@@ -24,4 +24,7 @@ cp ./.env.example ./.env
 
 # Run
 bun run dev
+
+# Query the Subgraph
+curl http://localhost:4000/graphql -X POST -H "Content-Type: application/json" -d '{"query": "{_meta{block {number}}}"}'
 ```
