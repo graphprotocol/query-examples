@@ -26,6 +26,7 @@ An API Key will be needed to query Subgraphs published to The Graph Network. Use
 - [SvelteKit](./examples/sveltejs/)
 - [NodeJS Fastify](./examples/nodejs-fastify/)
 - [cURL](./examples/curl/)
+- [Python CLI](./examples/python-cli/)
 
 ## Additional Resources
 
