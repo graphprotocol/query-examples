@@ -1,0 +1,29 @@
+{
+  "name": "@graphprotocol/query-examples-nodejs-cli",
+  "description": "Demos how to query the Graph Network Arbitrum Subgraph published to The Graph Network using an API Key obtained on The Graph Studio using a NodeJS cli",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/graphprotocol/query-examples",
+    "directory": "/examples/nodejs-cli"
+  },
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun src/index.ts"
+  },
+  "bin": {
+    "subgraph-query": "./src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
+    "zod": "^3.22.4"
+  }
+}
