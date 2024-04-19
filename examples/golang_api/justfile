@@ -1,0 +1,10 @@
+# build the executable
+build:
+  go build
+# run the built executable
+# the name is determined in the go.mod file
+start: build
+  ./query-examples-golang-api
+# run the main file directly
+dev:
+  go run .

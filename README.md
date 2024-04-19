@@ -29,6 +29,7 @@ An API Key will be needed to query Subgraphs published to The Graph Network. Use
 - [cURL](./examples/curl/)
 - [Python CLI](./examples/python-cli/)
 - [Python FastAPI](./examples/python-fastapi/)
+- [Golang API](./examples/golang_api/)
 
 ## Additional Resources
 
