@@ -31,6 +31,46 @@ bun install
 bun run dev
 ```
 
+## Querying the API -> Subgraph
+
+- just a query, no variables. queries the `_meta` entity
+
+```bash
+# start the api
+just dev
+
+# query the _meta. no variables
+curl http://localhost:8787 -H 'Content-Type: application/json' -d '{"query": "{_meta { block { number }}}"}' -X POST
+```
+
+```json5
+{
+	data: {
+		_meta: {
+			block: {
+				number: 202710879,
+			},
+		},
+	},
+}
+```
+
+- query with variables and an `operationName`
+
+```bash
+curl http://localhost:8787 -H 'Content-Type: application/json' -d '{"query": "query Subgraph($id: ID!) { subgraph(id: $id) { id } }", "variables": {"id": "8SxuHUYYBLHs1UkgFFYNaS7MgrEiAMbDyt5YzwZsSa6R"}, "operationName": "Subgraph"}' -X POST
+```
+
+```json5
+{
+	data: {
+		subgraph: {
+			id: '8SxuHUYYBLHs1UkgFFYNaS7MgrEiAMbDyt5YzwZsSa6R',
+		},
+	},
+}
+```
+
 ## Environment Variables
 
 - `SUBGRAPH_ENDPOINT`: this is the endpoint for your Subgraph on the Graph Network. Configured in the [wrangler.toml](./wrangler.toml) file
