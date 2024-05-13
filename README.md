@@ -25,6 +25,7 @@ An API Key will be needed to query Subgraphs published to The Graph Network. Use
 - [Nuxt (SSR Vue)](./examples/nuxt/)
 - [SvelteKit](./examples/sveltejs/)
 - [NodeJS Fastify](./examples/nodejs-fastify/)
+- [NodeJS CloudFlare Worker](./examples/nodejs-cf-worker/)
 - [NodeJS CLI](./examples/nodejs-cli/)
 - [cURL](./examples/curl/)
 - [Python CLI](./examples/python-cli/)

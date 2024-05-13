@@ -1,0 +1,19 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "nodejs-cf-worker"
+main = "src/index.ts"
+compatibility_date = "2024-05-12"
+
+# Automatically place your workloads in an optimal location to minimize latency.
+# If you are running back-end logic in a Worker, running it closer to your back-end infrastructure
+# rather than the end user may result in better performance.
+# Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+[placement]
+mode = "smart"
+
+# Note: Use secrets to store sensitive data, like your API Key.
+# Create a `.dev.vars` file in the root directory, and add: `API_KEY={your api key}`
+# - https://developers.cloudflare.com/workers/configuration/secrets/
+
+# Replace this with your subgraph endpoint
+[vars]
+SUBGRAPH_ENDPOINT = "https://gateway-arbitrum.network.thegraph.com/api/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp"

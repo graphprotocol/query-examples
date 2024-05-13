@@ -1,0 +1,24 @@
+{
+	"name": "@graphprotocol/query-examples-nodejs-cf-worker",
+	"description": "Demos how to build a CloudFlare worker function that acts as a proxy layer between your dapps and your Subgraph.",
+	"repository": {
+		"url": "https://github.com/graphprotocol/query-examples",
+		"directory": "/examples/nodejs-cf-worker"
+	},
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20240512.0",
+		"typescript": "^5.4.5",
+		"wrangler": "^3.55.0"
+	},
+	"dependencies": {
+		"zod": "^3.23.8"
+	}
+}
