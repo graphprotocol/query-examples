@@ -26,6 +26,11 @@
 
 import { z } from 'zod';
 
+export interface Env {
+	MY_RATE_LIMITER: any;
+	SUBGRAPH_ENDPOINT: any;
+}
+
 const GraphqlReqSchema = z.object({
 	query: z.string().min(1),
 	operationName: z.string().optional().nullable(),
@@ -46,6 +51,13 @@ export default {
 			return new Response(response.statusText, { status: response.status });
 		}
 		const body = await response.json();
+		
+		const { pathname } = new URL(env.SUBGRAPH_ENDPOINT)
+
+		const { success } = await env.MY_RATE_LIMITER.limit({ key: pathname }) // key can be any string of your choosing
+		if (!success) {
+		  return new Response(`429 Failure – rate limit exceeded for ${pathname}`, { status: 429 })
+		}	  
 
 		return new Response(JSON.stringify(body), { headers: { 'Content-Type': 'application/json' }, status: 200 });
 	},
