@@ -26,11 +26,6 @@
 
 import { z } from 'zod';
 
-export interface Env {
-	MY_RATE_LIMITER: any;
-	SUBGRAPH_ENDPOINT: any;
-}
-
 const GraphqlReqSchema = z.object({
 	query: z.string().min(1),
 	operationName: z.string().optional().nullable(),
@@ -46,18 +41,36 @@ export default {
 			return new Response('Unsupported', { status: 400 });
 		}
 
+		console.log('Hello world');
+
+		// const { pathname } = new URL(env.SUBGRAPH_ENDPOINT)
+
+		// const { success } = await env.MY_RATE_LIMITER.limit({ key: pathname }) // key can be any string of your choosing
+
+		// if (!success) {
+		//   return new Response(`429 Failure - rate limit exceeded for ${pathname}`, { status: 429 })
+		// }
+
+		const { success } = await env.MY_RATE_LIMITER.limit({ key: 'limiter' }); // key can be any string of your choosing
+		if (!success) {
+			return new Response(
+				JSON.stringify({
+					errors: [
+						{
+							message:
+								'Rate limit on ENS communtiy key exceeded. Try again later or got to https://thegraph.com/studio to create your own API key. Find the ENS subgraph here: https://thegraph.com/explorer/subgraphs/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH?v=1&view=Overview&chain=arbitrum-one',
+						},
+					],
+				}),
+				{ status: 429 }
+			);
+		}
+
 		const response = await querySubgraph(req, env);
 		if (response.status !== 200) {
 			return new Response(response.statusText, { status: response.status });
 		}
 		const body = await response.json();
-		
-		const { pathname } = new URL(env.SUBGRAPH_ENDPOINT)
-
-		const { success } = await env.MY_RATE_LIMITER.limit({ key: pathname }) // key can be any string of your choosing
-		if (!success) {
-		  return new Response(`429 Failure – rate limit exceeded for ${pathname}`, { status: 429 })
-		}	  
 
 		return new Response(JSON.stringify(body), { headers: { 'Content-Type': 'application/json' }, status: 200 });
 	},
@@ -78,7 +91,7 @@ async function querySubgraph(req: Request, env: Env) {
 		method: 'POST',
 		body: JSON.stringify(gqlRequest),
 		headers: {
-			authorization: `Bearer ${env.API_KEY}`,
+			// authorization: `Bearer ${env.API_KEY}`,
 			'Content-Type': 'application/json',
 		},
 	});
