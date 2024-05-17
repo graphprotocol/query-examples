@@ -24,7 +24,16 @@
  * @see https://developers.cloudflare.com/workers/configuration/secrets/
  */
 
+import { DurableObject } from 'cloudflare:workers';
 import { z } from 'zod';
+
+// const WHITEGLOVE_MAP = {
+// 	"api.thegraph.com/subgraphs/name/schmidsi/anudit-lens": {
+// 		""
+// 		"rateLimit": 100,
+// 		"rateLimitWindow": 6
+// 	}
+// }
 
 const GraphqlReqSchema = z.object({
 	query: z.string().min(1),
@@ -39,6 +48,36 @@ export default {
 		// The Graph Network Subgraph GraphQL requests should only support: OPTIONS, POST requests
 		if (!['POST', 'OPTIONS'].includes(req.method.toUpperCase())) {
 			return new Response('Unsupported', { status: 400 });
+		}
+
+		// TODO: per subgraph rate limiting
+		const id = env.RATE_LIMITER.idFromName('global');
+
+		console.log('Hello Pranav');
+
+		try {
+			const stub = env.RATE_LIMITER.get(id);
+			// const milliseconds_to_next_request = await ;
+
+			// console.log(milliseconds_to_next_request, 'milliseconds_to_next_request')
+
+			if (await stub.rateLimit()) {
+				// Alternatively one could sleep for the necessary length of time
+				return new Response(
+					JSON.stringify({
+						errors: [
+							{
+								message:
+									'Rate limit on ENS communtiy key exceeded. Try again later or got to https://thegraph.com/studio to create your own API key. Find the ENS subgraph here: https://thegraph.com/explorer/subgraphs/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH?v=1&view=Overview&chain=arbitrum-one',
+							},
+						],
+					}),
+					{ status: 429 }
+				);
+			}
+		} catch (error) {
+			console.log(error, 'error')
+			return new Response('Could not connect to rate limiter', { status: 502 });
 		}
 
 		const response = await querySubgraph(req, env);
@@ -66,8 +105,32 @@ async function querySubgraph(req: Request, env: Env) {
 		method: 'POST',
 		body: JSON.stringify(gqlRequest),
 		headers: {
-			authorization: `Bearer ${env.API_KEY}`,
+			// authorization: `Bearer ${env.API_KEY}`,
 			'Content-Type': 'application/json',
 		},
 	});
 }
+
+export class RateLimiter extends DurableObject {
+	static milliseconds_per_request = 10000;
+  
+	lastRequest: number;
+  
+	constructor(ctx: DurableObjectState, env: Env) {
+	  super(ctx, env);
+	  this.lastRequest = 0;
+	}
+  
+	async rateLimit(): Promise<boolean> {
+	  const now = Date.now();
+
+	  console.log(now, this.lastRequest,  RateLimiter.milliseconds_per_request);
+
+	  if (now - this.lastRequest > RateLimiter.milliseconds_per_request) {
+		this.lastRequest = now;
+		return false;
+	  } else {
+		return true
+	  }
+	}
+  }
