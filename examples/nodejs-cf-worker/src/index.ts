@@ -24,7 +24,16 @@
  * @see https://developers.cloudflare.com/workers/configuration/secrets/
  */
 
+import { DurableObject } from 'cloudflare:workers';
 import { z } from 'zod';
+
+// const WHITEGLOVE_MAP = {
+// 	"api.thegraph.com/subgraphs/name/schmidsi/anudit-lens": {
+// 		""
+// 		"rateLimit": 100,
+// 		"rateLimitWindow": 6
+// 	}
+// }
 
 const GraphqlReqSchema = z.object({
 	query: z.string().min(1),
@@ -41,29 +50,34 @@ export default {
 			return new Response('Unsupported', { status: 400 });
 		}
 
-		console.log('Hello world');
+		// TODO: per subgraph rate limiting
+		const id = env.RATE_LIMITER.idFromName('global');
 
-		// const { pathname } = new URL(env.SUBGRAPH_ENDPOINT)
+		console.log('Hello Pranav');
 
-		// const { success } = await env.MY_RATE_LIMITER.limit({ key: pathname }) // key can be any string of your choosing
+		try {
+			const stub = env.RATE_LIMITER.get(id);
+			// const milliseconds_to_next_request = await ;
 
-		// if (!success) {
-		//   return new Response(`429 Failure - rate limit exceeded for ${pathname}`, { status: 429 })
-		// }
+			// console.log(milliseconds_to_next_request, 'milliseconds_to_next_request')
 
-		const { success } = await env.MY_RATE_LIMITER.limit({ key: 'limiter' }); // key can be any string of your choosing
-		if (!success) {
-			return new Response(
-				JSON.stringify({
-					errors: [
-						{
-							message:
-								'Rate limit on ENS communtiy key exceeded. Try again later or got to https://thegraph.com/studio to create your own API key. Find the ENS subgraph here: https://thegraph.com/explorer/subgraphs/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH?v=1&view=Overview&chain=arbitrum-one',
-						},
-					],
-				}),
-				{ status: 429 }
-			);
+			if (await stub.rateLimit()) {
+				// Alternatively one could sleep for the necessary length of time
+				return new Response(
+					JSON.stringify({
+						errors: [
+							{
+								message:
+									'Rate limit on ENS communtiy key exceeded. Try again later or got to https://thegraph.com/studio to create your own API key. Find the ENS subgraph here: https://thegraph.com/explorer/subgraphs/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH?v=1&view=Overview&chain=arbitrum-one',
+							},
+						],
+					}),
+					{ status: 429 }
+				);
+			}
+		} catch (error) {
+			console.log(error, 'error')
+			return new Response('Could not connect to rate limiter', { status: 502 });
 		}
 
 		const response = await querySubgraph(req, env);
@@ -96,3 +110,27 @@ async function querySubgraph(req: Request, env: Env) {
 		},
 	});
 }
+
+export class RateLimiter extends DurableObject {
+	static milliseconds_per_request = 10000;
+  
+	lastRequest: number;
+  
+	constructor(ctx: DurableObjectState, env: Env) {
+	  super(ctx, env);
+	  this.lastRequest = 0;
+	}
+  
+	async rateLimit(): Promise<boolean> {
+	  const now = Date.now();
+
+	  console.log(now, this.lastRequest,  RateLimiter.milliseconds_per_request);
+
+	  if (now - this.lastRequest > RateLimiter.milliseconds_per_request) {
+		this.lastRequest = now;
+		return false;
+	  } else {
+		return true
+	  }
+	}
+  }

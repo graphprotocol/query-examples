@@ -18,14 +18,10 @@ mode = "smart"
 [vars]
 SUBGRAPH_ENDPOINT = "https://gateway-arbitrum.network.thegraph.com/api/25eb15e49c08702d60d90be66dd9a9a3/subgraphs/id/74z4nnW6cr62ox3fLFaD3muieJzMXJimi6EZsG52yChM"
 
-[[unsafe.bindings]]
-name = "MY_RATE_LIMITER"
-type = "ratelimit"
-# An identifier you define, that is unique to your Cloudflare account.
-# Must be an integer.
-namespace_id = "1234123429324"
+[[durable_objects.bindings]]
+name = "RATE_LIMITER"
+class_name = "RateLimiter"
 
-# Limit: the number of tokens allowed within a given period in a single
-# Cloudflare location
-# Period: the duration of the period, in seconds. Must be either 10 or 60
-simple = { limit = 1, period = 10 }
+[[migrations]]
+tag = "v1"
+new_classes = ["RateLimiter"]
