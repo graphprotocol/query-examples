@@ -26,10 +26,10 @@
 
 import { z } from 'zod';
 
-export interface Env {
-	MY_RATE_LIMITER: any;
-	SUBGRAPH_ENDPOINT: any;
-}
+// export interface Env {
+// 	MY_RATE_LIMITER: any;
+// 	SUBGRAPH_ENDPOINT: any;
+// }
 
 const GraphqlReqSchema = z.object({
 	query: z.string().min(1),
@@ -51,12 +51,12 @@ export default {
 			return new Response(response.statusText, { status: response.status });
 		}
 		const body = await response.json();
-		
+		//console.log(response);
 		const { pathname } = new URL(env.SUBGRAPH_ENDPOINT)
 
-		const { success } = await env.MY_RATE_LIMITER.limit({ key: pathname }) // key can be any string of your choosing
+		const { success } = await env.MY_RATE_LIMITER.limit({ key: 'limiter' }) // key can be any string of your choosing
 		if (!success) {
-		  return new Response(`429 Failure – rate limit exceeded for ${pathname}`, { status: 429 })
+		  return new Response(`429 Failure`, { status: 429 })
 		}	  
 
 		return new Response(JSON.stringify(body), { headers: { 'Content-Type': 'application/json' }, status: 200 });
@@ -64,6 +64,7 @@ export default {
 };
 
 async function querySubgraph(req: Request, env: Env) {
+	console.log("HI Pranav");
 	const body = await req.json();
 	if (body == null) {
 		return new Response('Invalid GraphQL Request', { status: 400 });
@@ -76,10 +77,10 @@ async function querySubgraph(req: Request, env: Env) {
 
 	return await fetch(env.SUBGRAPH_ENDPOINT, {
 		method: 'POST',
-		body: JSON.stringify(gqlRequest),
-		headers: {
-			authorization: `Bearer ${env.API_KEY}`,
-			'Content-Type': 'application/json',
-		},
+		body: JSON.stringify(gqlRequest)
+		// headers: {
+		// 	authorization: `Bearer ${env.API_KEY}`,
+		// 	'Content-Type': 'application/json',
+		// },
 	});
 }
