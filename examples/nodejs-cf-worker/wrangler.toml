@@ -17,10 +17,19 @@ mode = "smart"
 # Replace this with your subgraph endpoint
 [vars]
 SUBGRAPH_ENDPOINT = "https://gateway-arbitrum.network.thegraph.com/api/25eb15e49c08702d60d90be66dd9a9a3/subgraphs/id/74z4nnW6cr62ox3fLFaD3muieJzMXJimi6EZsG52yChM"
+ADMIN_ACCESS_KEY = "CONFIGURE_A_SECRET_KEY_FOR_ADMINS"
 
-[[durable_objects.bindings]]
+[[unsafe.bindings]]
 name = "RATE_LIMITER"
-class_name = "RateLimiter"
+type = "ratelimit"
+namespace_id = "1001"
+
+# 10 req/sec == 600 req/min
+simple = { limit = 600, period = 60 }
+
+kv_namespaces = [
+  { binding = "redirect_limit_store", id = "06779da6940b431db6e566b4846d64db" }
+]
 
 [[migrations]]
 tag = "v1"
