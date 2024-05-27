@@ -45,13 +45,13 @@ curl http://localhost:8787 -H 'Content-Type: application/json' -d '{"query": "{_
 
 ```json5
 {
-	data: {
-		_meta: {
-			block: {
-				number: 202710879,
-			},
-		},
-	},
+  data: {
+    _meta: {
+      block: {
+        number: 202710879,
+      },
+    },
+  },
 }
 ```
 
@@ -63,11 +63,11 @@ curl http://localhost:8787 -H 'Content-Type: application/json' -d '{"query": "qu
 
 ```json5
 {
-	data: {
-		subgraph: {
-			id: '8SxuHUYYBLHs1UkgFFYNaS7MgrEiAMbDyt5YzwZsSa6R',
-		},
-	},
+  data: {
+    subgraph: {
+      id: '8SxuHUYYBLHs1UkgFFYNaS7MgrEiAMbDyt5YzwZsSa6R',
+    },
+  },
 }
 ```
 

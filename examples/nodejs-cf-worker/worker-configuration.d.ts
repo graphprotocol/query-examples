@@ -2,7 +2,9 @@
 // by running `wrangler types`
 
 interface Env {
-	SUBGRAPH_ENDPOINT: "https://gateway-arbitrum.network.thegraph.com/api/25eb15e49c08702d60d90be66dd9a9a3/subgraphs/id/74z4nnW6cr62ox3fLFaD3muieJzMXJimi6EZsG52yChM";
-	API_KEY: string;
-	RATE_LIMITER: DurableObjectNamespace;
+  ADMIN_ACCESS_KEY: string;
+  RATE_LIMITER: {
+    limit: ({ key: string }) => Promise<{ success: boolean }>;
+  };
+  redirect_limit_store: KVNamespace;
 }
