@@ -1,3 +1,9 @@
+[README.md](https://github.com/user-attachments/files/16465795/README.md)
+[8454be40-6b48-4ce6-aa9b-3417b17e8536.pdf](https://github.com/user-attachments/files/16465793/8454be40-6b48-4ce6-aa9b-3417b17e8536.pdf)
+[Aave_Protocol_Whitepaper_v1_0.pdf](https://github.com/user-attachments/files/16465791/Aave_Protocol_Whitepaper_v1_0.pdf)
+[LICENSE.md](https://github.com/user-attachments/files/16465790/LICENSE.md)
+[CONTRIBUTING.md](https://github.com/user-attachments/files/16465789/CONTRIBUTING.md)
+![polygon-pos-chain-daily](https://github.com/user-attachments/assets/8ac436c6-645a-46fe-89d3-effa30396cfe)
 # The Graph Protocol - Query Examples
 
 Provides examples on how to query Subgraphs published to [The Graph Network](https://thegraph.com/) using API Keys.
