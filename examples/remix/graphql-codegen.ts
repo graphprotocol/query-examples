@@ -14,7 +14,7 @@ export default {
     './app/generated/': {
       schema: [
         {
-          // replace this with your Subgrah URL
+         // replace this with your Subgraph URL
           'https://gateway-arbitrum.network.thegraph.com/api/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp': {
             headers: {
               Authorization: `Bearer ${API_KEY}`,
