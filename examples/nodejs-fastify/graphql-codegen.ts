@@ -13,8 +13,14 @@ export default {
   generates: {
     './src/generated/subgraph.ts': {
       schema: [
-        // replace this with your Subgrah URL
-        `https://gateway-arbitrum.network.thegraph.com/api/${API_KEY}/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp`,
+        {
+          // replace this with your Subgraph URL
+          'https://gateway-arbitrum.network.thegraph.com/api/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp': {
+            headers: {
+              Authorization: `Bearer ${API_KEY}`,
+            },
+          },
+        },
       ],
       // documents: ['./src/**/*.ts'],
       plugins: ['typescript', 'typescript-operations'],
