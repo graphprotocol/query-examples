@@ -1,5 +1,5 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "nodejs-cf-worker"
+name = "redirect-rate-limit-network-test"
 main = "src/index.ts"
 compatibility_date = "2024-05-12"
 
@@ -16,4 +16,12 @@ mode = "smart"
 
 # Replace this with your subgraph endpoint
 [vars]
-SUBGRAPH_ENDPOINT = "https://gateway-arbitrum.network.thegraph.com/api/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp"
+SUBGRAPH_ENDPOINT = "https://gateway-arbitrum.network.thegraph.com/api/25eb15e49c08702d60d90be66dd9a9a3/subgraphs/id/74z4nnW6cr62ox3fLFaD3muieJzMXJimi6EZsG52yChM"
+
+[[durable_objects.bindings]]
+name = "RATE_LIMITER"
+class_name = "RateLimiter"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["RateLimiter"]
